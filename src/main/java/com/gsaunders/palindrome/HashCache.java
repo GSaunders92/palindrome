@@ -4,9 +4,15 @@ import java.util.HashSet;
 
 public class HashCache implements Cache {
     HashSet<String> stringCache;
+    DataStore store;
 
-    HashCache(){
+    HashCache(DataStore store){
         stringCache = new HashSet<>();
+        this.store = store;
+        String[] inital_state = store.get_all();
+        for (String str : inital_state){
+            stringCache.add(str);
+        }
     }
 
     public boolean contains(String input) {
@@ -16,5 +22,6 @@ public class HashCache implements Cache {
 
     public void put(String input) {
         stringCache.add(input);
+        store.put(input);
     }
 }
