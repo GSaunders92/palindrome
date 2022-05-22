@@ -17,8 +17,9 @@ public class PalindromeController {
     Palindrome palindrome;
 
     public PalindromeController(){
-        palindrome_path = "C:\\Users\\George Saunders\\Documents\\palindrome.txt";
-        non_palindrome_path = "C:\\Users\\George Saunders\\Documents\\nonpalindrome.txt";
+        String base_path = System.getenv("DiskCachePath");
+        palindrome_path = base_path + "\\palindrome.txt";
+        non_palindrome_path = base_path + "\\nonpalindrome.txt";
         palindrome_cache = new HashCache(new DiskStore(palindrome_path));
         non_palindrome_cache = new HashCache(new DiskStore(non_palindrome_path));
         palindrome = new Palindrome(palindrome_cache, non_palindrome_cache);
