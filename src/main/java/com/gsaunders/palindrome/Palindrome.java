@@ -1,5 +1,8 @@
 package com.gsaunders.palindrome;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,21 +11,31 @@ public class Palindrome {
     private Cache non_palindrome_cache;
     private List<ValidationRule> rules = new ArrayList<ValidationRule>();
 
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
+
     Palindrome(Cache palindrome_cache, Cache non_palindrome_cache){
         this.palindrome_cache = palindrome_cache;
         this.non_palindrome_cache = non_palindrome_cache;
     }
     public boolean is_palindrome(String input){
-        if(palindrome_cache.contains(input)) return true;
-        if(non_palindrome_cache.contains(input)) return false;
-        boolean res = palindrome_check(input);
-        if(res) {
+        if(palindrome_cache.contains(input)) {
+            logger.info("Retrieved " + input + " from palindrome cache");
+            return true;
+        }
+        else if(non_palindrome_cache.contains(input)) {
+            logger.info("Retrieved " + input + " from nonpalindrome cache");
+            return false;
+        }
+        else if (palindrome_check(input)){
+            logger.info("Checked "+ input + " is a palindrome");
             palindrome_cache.put(input);
+            return true;
         }
         else {
+            logger.info("Checked "+ input + " is not a palindrome");
             non_palindrome_cache.put(input);
+            return false;
         }
-        return res;
     }
 
     private boolean palindrome_check(String input){
