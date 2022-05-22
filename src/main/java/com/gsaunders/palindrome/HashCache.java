@@ -6,11 +6,11 @@ public class HashCache implements Cache {
     HashSet<String> stringCache;
     DataStore store;
 
-    HashCache(DataStore store){
+    HashCache(DataStore store) {
         stringCache = new HashSet<>();
         this.store = store;
         String[] inital_state = store.get_all();
-        for (String str : inital_state){
+        for (String str : inital_state) {
             stringCache.add(str);
         }
     }

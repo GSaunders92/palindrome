@@ -13,18 +13,18 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 
 
-
 @SpringBootTest
 @AutoConfigureMockMvc
 class PalindromeApplicationTests {
 
-	@Autowired
-	private MockMvc mvc;
-	@Test
-	void test_palindrome_api() throws Exception {
-		mvc.perform(get("/?username=kayak", 1)).andExpect(content().string("kayak is a Palindrome"));
-		mvc.perform(get("/?username=chicken", 1)).andExpect(content().string("chicken is not a Palindrome"));
-		mvc.perform(get("/?username=spa ce", 1)).andExpect(content().string("Please remove spaces from input"));
-		mvc.perform(get("/?username=numb3rs", 1)).andExpect(content().string("Please remove numbers from input"));
-	}
+    @Autowired
+    private MockMvc mvc;
+
+    @Test
+    void test_palindrome_api() throws Exception {
+        mvc.perform(get("/?username=kayak", 1)).andExpect(content().string("kayak is a Palindrome"));
+        mvc.perform(get("/?username=chicken", 1)).andExpect(content().string("chicken is not a Palindrome"));
+        mvc.perform(get("/?username=spa ce", 1)).andExpect(content().string("Please remove spaces from input"));
+        mvc.perform(get("/?username=numb3rs", 1)).andExpect(content().string("Please remove numbers from input"));
+    }
 }

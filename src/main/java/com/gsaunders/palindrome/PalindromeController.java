@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class PalindromeController {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
-
     String palindrome_path;
     String non_palindrome_path;
     Cache palindrome_cache;

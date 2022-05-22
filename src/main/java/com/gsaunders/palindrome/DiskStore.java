@@ -7,7 +7,8 @@ import java.util.Scanner;
 
 public class DiskStore implements DataStore {
     String path;
-    DiskStore(String path){
+
+    DiskStore(String path) {
         this.path = path;
     }
 
