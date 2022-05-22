@@ -31,7 +31,7 @@ public class PalindromeController {
             return username + " is a Palindrome";
         }
         else {
-            return username + " is a not Palindrome";
+            return username + " is not a Palindrome";
         }
     }
 }
