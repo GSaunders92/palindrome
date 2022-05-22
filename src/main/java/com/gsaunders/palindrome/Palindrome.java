@@ -9,7 +9,6 @@ import java.util.List;
 public class Palindrome {
     private Cache palindrome_cache;
     private Cache non_palindrome_cache;
-    private List<ValidationRule> rules = new ArrayList<ValidationRule>();
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -44,18 +43,5 @@ public class Palindrome {
             }
         }
         return true;
-    }
-
-    public void add_rule(ValidationRule rule) {
-        rules.add(rule);
-    }
-
-    public ValidationRule check_rules(String input) {
-        for (ValidationRule rule : rules) {
-            if (rule.rule(input)) {
-                return rule;
-            }
-        }
-        return null;
     }
 }

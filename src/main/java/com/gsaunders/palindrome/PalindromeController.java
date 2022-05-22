@@ -14,6 +14,7 @@ public class PalindromeController {
     Cache palindrome_cache;
     Cache non_palindrome_cache;
     Palindrome palindrome;
+    InputValidation validate;
 
     public PalindromeController(){
         String base_path = System.getenv("DiskCachePath");
@@ -22,14 +23,15 @@ public class PalindromeController {
         palindrome_cache = new HashCache(new DiskStore(palindrome_path));
         non_palindrome_cache = new HashCache(new DiskStore(non_palindrome_path));
         palindrome = new Palindrome(palindrome_cache, non_palindrome_cache);
-        palindrome.add_rule(new NoNumbersRule());
-        palindrome.add_rule(new NoSpacesRule());
+        validate = new InputValidation();
+        validate.add_rule(new NoNumbersRule());
+        validate.add_rule(new NoSpacesRule());
     }
 
     @GetMapping("/")
     public String index(@RequestParam(name="username") String username) {
         logger.info("Checking user input - " + username);
-        ValidationRule rule = palindrome.check_rules(username);
+        ValidationRule rule = validate.check_rules(username);
         if(rule != null) return rule.get_fail_message();
         if (palindrome.is_palindrome(username)){
             return username + " is a Palindrome";
