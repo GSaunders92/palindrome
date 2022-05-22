@@ -9,8 +9,8 @@ public class HashCache implements Cache {
     HashCache(DataStore store) {
         stringCache = new HashSet<>();
         this.store = store;
-        String[] inital_state = store.get_all();
-        for (String str : inital_state) {
+        String[] initial_state = store.get_all();
+        for (String str : initial_state) {
             stringCache.add(str);
         }
     }
